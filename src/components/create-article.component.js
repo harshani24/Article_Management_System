@@ -64,43 +64,45 @@ export default class CreateArticle extends Component {
     return (
       <div className="container">
         <br /><br /><br />
-        <h3>Create New Article</h3>
-        <form onSubmit={this.onSubmit}>
+        <div style={{ outlineStyle: "solid", width: "800px", height: "100%", padding: "10px 30px" }}>
+          <h3>Create New Article</h3>
+          <form onSubmit={this.onSubmit}>
 
-          <div className="form-group" >
-            <label>Author Name: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-          </div>
-          <div className="form-group">
-            <label>Description: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-            />
-          </div>
-          <div className="form-group">
-            <label>Your Article: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.article}
-              onChange={this.onChangeArticle}
-            />
-          </div>
+            <div className="form-group" >
+              <label>Author Name: </label>
+              <input type="text"
+                required
+                className="form-control"
+                value={this.state.username}
+                onChange={this.onChangeUsername}
+              />
+            </div>
+            <div className="form-group">
+              <label>Description: </label>
+              <input type="text"
+                required
+                className="form-control"
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+              />
+            </div>
+            <div className="form-group">
+              <label>Your Article: </label>
+              <input type="text"
+                required
+                className="form-control"
+                value={this.state.article}
+                onChange={this.onChangeArticle}
+              />
+            </div>
 
 
 
-          <div className="form-group">
-            <input type="submit" value="Create Article" className="btn btn-primary" />
-          </div>
-        </form>
+            <div className="form-group">
+              <input type="submit" value="Create Article" className="btn btn-primary" />
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

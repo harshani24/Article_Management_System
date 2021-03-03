@@ -77,7 +77,7 @@ export default class ArticlesList extends Component {
                 {this.state.loading ? <div>
                     <Spinner />
                 </div> :
-                    <div><h3>All Added Articles</h3>
+                    <div style={{ outlineStyle: "solid", width: "900px", height: "80%", padding: "10px 30px" }} ><h3>All Added Articles</h3>
                         <table className="table table-bordered" style={{ border: " 1px black" }}>
                             <thead className="thead-light">
                                 <tr>

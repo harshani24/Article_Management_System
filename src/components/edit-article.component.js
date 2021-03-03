@@ -82,7 +82,7 @@ export default class EditArticle extends Component {
         <br /><br /><br />
         {this.state.loading ? <div>
           <Spinner />
-        </div> : <div>
+        </div> : <div style={{ outlineStyle: "solid", width: "800px", height: "100%", padding: "10px 30px" }} >
             <h3>Edit Article</h3>
             <form onSubmit={this.onSubmit}>
 
