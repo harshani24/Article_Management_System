@@ -62,11 +62,12 @@ export default class CreateArticle extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <br /><br /><br />
         <h3>Create New Article</h3>
         <form onSubmit={this.onSubmit}>
 
-          <div className="form-group">
+          <div className="form-group" >
             <label>Author Name: </label>
             <input type="text"
               required

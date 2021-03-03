@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../util/firebase';
+import Spinner from './common/Spinner';
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 
 const Article = props => (
     <tr>
@@ -9,7 +11,7 @@ const Article = props => (
         <td>{props.article.article}</td>
 
         <td>
-            <Link to={"/edit/" + props.articleid}>edit</Link> | <a href="#" onClick={() => { props.deleteArticle(props.article.id) }}>delete</a>
+            <Link className="btn btn-success " style={{ width: "100px", marginRight: "10px" }} to={"/edit/" + props.articleid}><FaEdit size={20} />edit</Link>   <button className="btn btn-danger " style={{ width: "100px" }} onClick={() => { props.deleteArticle(props.article.id) }}><FaTrashAlt size={20} /> delete</button>
         </td>
     </tr>
 
@@ -22,7 +24,7 @@ export default class ArticlesList extends Component {
 
         this.deleteArticle = this.deleteArticle.bind(this)
 
-        this.state = { articles: [] };
+        this.state = { articles: [], loading: true };
     }
 
     componentDidMount() {
@@ -39,7 +41,7 @@ export default class ArticlesList extends Component {
 
 
             console.log(articleList)
-            this.setState({ articles: articleList })
+            this.setState({ articles: articleList, loading: false })
             console.log(articles)
 
 
@@ -64,24 +66,34 @@ export default class ArticlesList extends Component {
         })
     }
 
+
+
     render() {
+
         return (
-            <div>
-                <h3>All Added Articles</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                        <tr>
-                            <th>Author</th>
-                            <th>Description</th>
-                            <th>Article</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.ArticleList()}
-                    </tbody>
-                </table>
+
+            <div className="container">
+                <br /><br /><br /><br />
+                {this.state.loading ? <div>
+                    <Spinner />
+                </div> :
+                    <div><h3>All Added Articles</h3>
+                        <table className="table table-bordered" style={{ border: " 1px black" }}>
+                            <thead className="thead-light">
+                                <tr>
+                                    <th>Author</th>
+                                    <th>Description</th>
+                                    <th>Article</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.ArticleList()}
+                            </tbody>
+                        </table></div>}
             </div>
+
+
         )
     }
 }

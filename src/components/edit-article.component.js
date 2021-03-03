@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../util/firebase';
+import Spinner from './common/Spinner';
 
 export default class EditArticle extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class EditArticle extends Component {
     this.state = {
       username: '',
       description: '',
-      article: ''
+      article: '',
+      loading: true
     }
   }
 
@@ -24,7 +26,8 @@ export default class EditArticle extends Component {
     articleRef.on('value', (snapshot) => {
       const articles = snapshot.val();
 
-      this.setState({ username: articles.username, description: articles.description, article: articles.article })
+      this.setState({ username: articles.username, description: articles.description, article: articles.article, loading: false })
+
 
 
     });
@@ -75,43 +78,47 @@ export default class EditArticle extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Edit Article</h3>
-        <form onSubmit={this.onSubmit}>
+      <div className="container">
+        <br /><br /><br />
+        {this.state.loading ? <div>
+          <Spinner />
+        </div> : <div>
+            <h3>Edit Article</h3>
+            <form onSubmit={this.onSubmit}>
 
-          <div className="form-group">
-            <label>Author Name: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-            />
-          </div>
-          <div className="form-group">
-            <label>Description: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.description}
-              onChange={this.onChangeDescription}
-            />
-          </div>
-          <div className="form-group">
-            <label>Your Article: </label>
-            <input type="text"
-              required
-              className="form-control"
-              value={this.state.article}
-              onChange={this.onChangeArticle}
-            />
-          </div>
+              <div className="form-group">
+                <label>Author Name: </label>
+                <input type="text"
+                  required
+                  className="form-control"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}
+                />
+              </div>
+              <div className="form-group">
+                <label>Description: </label>
+                <input type="text"
+                  required
+                  className="form-control"
+                  value={this.state.description}
+                  onChange={this.onChangeDescription}
+                />
+              </div>
+              <div className="form-group">
+                <label>Your Article: </label>
+                <input type="text"
+                  required
+                  className="form-control"
+                  value={this.state.article}
+                  onChange={this.onChangeArticle}
+                />
+              </div>
 
 
-          <div className="form-group">
-            <input type="submit" value="Edit Article" className="btn btn-primary" />
-          </div>
-        </form>
+              <div className="form-group">
+                <input type="submit" value="Edit Article" className="btn btn-primary" />
+              </div>
+            </form></div>}
       </div>
     )
   }
